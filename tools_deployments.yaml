@@ -1,0 +1,39 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: pypampo
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pypampo
+    spec:
+      containers:
+      - name: pypampo
+        image: 329719/pypampo
+        env:
+        - name: AUTHOR
+          value: pypampo
+        ports:
+        - containerPort: 8000
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: contamehistorias
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: contamehistorias
+    spec:
+      containers:
+      - name: contamehistorias
+        image: 329719/contamehistorias
+        env:
+        - name: AUTHOR
+          value: contamehistorias
+        ports:
+        - containerPort: 8000
