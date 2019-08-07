@@ -37,3 +37,23 @@ spec:
           value: contamehistorias
         ports:
         - containerPort: 8000
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: flasgger
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: flasgger
+    spec:
+      containers:
+      - name: flasgger
+        image: 329719/flasgger
+        env:
+        - name: AUTHOR
+          value: flasgger
+        ports:
+        - containerPort: 8000
