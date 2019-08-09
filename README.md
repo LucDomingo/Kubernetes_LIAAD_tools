@@ -15,6 +15,48 @@ Now just create ingress rules for Nginx Controller :
 ```bash
 kubectl apply -f app-ingress.yaml
 ```
+##Add a new tool
+First create a new deployment editing [tools_deployments.yaml]() :
+```bash
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: <name> # Tool name
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: <app> # App name
+    spec:
+      containers:
+      - name: <name>
+        image: <image> # Tool image available on docker hub
+        env:
+        ports:
+        - containerPort: <port> # port exposed in Dockerfile
+```
+Then create a new service editing [tools_services.yaml]() :
+```bash
+apiVersion: v1
+kind: Service
+metadata:
+  name: <name> # Service name
+spec:
+  ports:
+  - port: <port> # port number which makes a service visible to other services running within the same cluster
+    protocol: TCP
+    targetPort: <targetPort> # port on the POD where the service is running.
+  selector:
+    app: contamehistorias
+ ```
+Now just add a new ingress rule editing [app_ingress.yaml]() :
+```bash
+      - path: /<name>(/|$)(.*) # Your tool name. Here Nginx is using regex to rewrite sub-path after /<name>
+        backend:
+          serviceName: <service_name>
+          servicePort: <port> # similar as port in tools_services.yaml
+ ```
 ## Test
 To access to swagger documentation request [http://<external_ip>/<tools_name>/apidocs/]().
 
