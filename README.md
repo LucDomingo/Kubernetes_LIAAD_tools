@@ -15,7 +15,7 @@ Now just create ingress rules for Nginx Controller :
 ```bash
 kubectl apply -f app-ingress.yaml
 ```
-## Usage
+## Test
 To access to swagger documentation request [http://<external_ip>/<tools_name>/apidocs/]().
 
 Request examples :
