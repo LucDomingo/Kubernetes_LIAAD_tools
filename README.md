@@ -52,10 +52,10 @@ spec:
  ```
 Now just add a new ingress rule editing [app_ingress.yaml]() :
 ```bash
-      - path: /<name>(/|$)(.*) # Your tool name. Here Nginx is using regex to rewrite sub-path after /<name>
-        backend:
-          serviceName: <service_name>
-          servicePort: <port> # similar as port in tools_services.yaml
+- path: /<name>(/|$)(.*) # Your tool name. Here Nginx is using regex to rewrite sub-path after /<name>
+     backend:
+       serviceName: <service_name>
+       servicePort: <port> # similar as port in tools_services.yaml
  ```
 ## Test
 To access to swagger documentation request [http://<external_ip>/<tools_name>/apidocs/]().
