@@ -15,7 +15,7 @@ Now just create ingress rules for Nginx Controller :
 ```bash
 kubectl apply -f app-ingress.yaml
 ```
-##Add a new tool
+## Add a new tool
 First create a new deployment editing [tools_deployments.yaml]() :
 ```bash
 apiVersion: extensions/v1beta1
